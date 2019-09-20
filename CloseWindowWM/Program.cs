@@ -17,7 +17,15 @@ namespace CloseWindowWM
 
         static void Main(string[] args)
         {
-            ErrorMessage = File.ReadAllText("errormsg.txt");
+            if (File.Exists("errormsg.txt"))
+            {
+                ErrorMessage = File.ReadAllText("errormsg.txt");
+            }
+            else
+            {
+                ErrorMessage = "[[processname]]";
+            }
+
 
             HotKeyManager.HotKeyPressed += (ss, ee) => CloseWindow();
             HotKeyManager.RegisterHotKey(Keys.L, KeyModifiers.Alt);
